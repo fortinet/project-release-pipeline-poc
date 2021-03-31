@@ -1,0 +1,31 @@
+name: >-
+  Run tests on pushing to designated branches.
+on:
+  # Run whenever new commits are pushed to the target branches defined as below.
+  push:
+    branches:
+      - 'main' # main branches
+      - 'rel_*' # release branches
+
+jobs:
+  main_job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+    name: A test job
+    steps:
+      - name: 'prep: git checkout'
+        uses: actions/checkout@v2
+      - name: 'prep: use node.js ${{ matrix.node-version }}'
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: 'prep: install dependencies'
+        run: npm ci
+      - name: 'prep: npm audit (production)'
+        run: npm audit --production
+      - name: build project
+        run: npm run build
+      - name: run tests
+        run: npm test

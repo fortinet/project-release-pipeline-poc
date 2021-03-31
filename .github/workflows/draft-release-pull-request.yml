@@ -1,0 +1,74 @@
+name: >-
+  Draft a release pull request from head branch to base branch
+
+on:
+  # Run by manual trigger
+  workflow_dispatch:
+    inputs:
+      base-branch:
+        description: >-
+          The base branch that the pull request is issued against.
+        required: true
+        default: main
+      head-branch:
+        description: >-
+          The head branch that the pull request is issued against.
+        required: true
+        default: main
+      pr-assignees:
+        description: >-
+          A comma-separated list of the assignees (usernames) for the pull request.
+          If pr-template-uri is also used, this parameter will override the 'assignees' field in the template.
+          If none should be set, giving a single comma as value to this field.
+          Only users with push access can add assignees to an issue. Assignees are silently ignored otherwise.
+        required: false
+      pr-labels:
+        description: >-
+          A comma-separated list of labels to be added to the pull request.
+          If pr-template-uri is also used, this parameter will override the 'labels' field in the template.
+          If none should be set, giving a single comma as value to this field.
+        required: false
+        default: 'versioning-pr'
+      pr-reviewers:
+        description: >-
+          A comma-separated list of the reviewers (usernames) for the pull request.
+          If pr-template-uri is also used, this parameter will override the 'reviewers' field in the template.
+          If none should be set, giving a single comma as value to this field.
+        required: false
+      pr-team-reviewers:
+        description: >-
+          A comma-separated list of the team reviewers (usernames) for the pull request.
+          If pr-template-uri is also used, this parameter will override the 'team-reviewers' field in the template.
+          If none should be set, giving a single comma as value to this field.
+        required: false
+jobs:
+  main_job:
+    runs-on: ubuntu-latest
+    name: A test job
+    steps:
+      - name: versioning pr
+        id: versioning-pr
+        uses: fortinet/github-action-version-pr@1.0.0
+        with:
+          base-branch: ${{ github.event.inputs.base-branch }}
+          head-branch: ${{ github.event.inputs.head-branch }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: ${{ github.event.inputs.prerelease }}
+          pr-assignees: ${{ github.event.inputs.pr-assignees }}
+          pr-create-draft: true
+          pr-fail-if-exist: false
+          pr-labels: ${{ github.event.inputs.pr-labels }}
+          pr-reviewers: ${{ github.event.inputs.pr-reviewers }}
+          pr-team-reviewers: ${{ github.event.inputs.pr-team-reviewers }}
+          pr-template-uri: templates/versioning-pr.yml
+      # Use the output from the `versioning-pr` step
+      - name: Get the versioning-pr output
+        run: |
+          echo "The base-branch was ${{ steps['versioning-pr'].outputs['base-branch'] }}"
+          echo "The head-branch was ${{ steps['versioning-pr'].outputs['head-branch'] }}"
+          echo "The base-version was ${{ steps['versioning-pr'].outputs['base-version'] }}"
+          echo "The head-version was ${{ steps['versioning-pr'].outputs['head-version'] }}"
+          echo "The is-prerelease was ${{ steps['versioning-pr'].outputs['is-prerelease'] }}"
+          echo "The is-draft-pr was ${{ steps['versioning-pr'].outputs['is-draft-pr'] }}"
+          echo "The pull-request-number was ${{ steps['versioning-pr'].outputs['pull-request-number'] }}"
+          echo "The pull-request-url was ${{ steps['versioning-pr'].outputs['pull-request-url'] }}"

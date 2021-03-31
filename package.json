@@ -1,0 +1,35 @@
+{
+  "name": "project-release-pipeline-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/types",
+  "scripts": {
+    "bundle": "shx rm -rf dist && ncc build out/index.js -so dist",
+    "compile": "shx rm -rf out && shx rm -rf dist/types && tsc",
+    "build": "npm run compile && npm run bundle",
+    "make-release": "shx rm -rf release && shx mkdir -p release && cd dist && zip -r ../release/release-artifacts.zip *",
+    "test": "echo \\\"No test specified.\\\" && exit 0",
+    "version": "npm run build && git add ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fortinet/project-release-pipeline-poc.git"
+  },
+  "author": "Fortinet (github@fortinet.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fortinet/project-release-pipeline-poc/issues"
+  },
+  "homepage": "https://github.com/fortinet/project-release-pipeline-poc#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "@vercel/ncc": "^0.27.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1",
+    "shx": "^0.3.3",
+    "typescript": "^4.2.3"
+  }
+}
