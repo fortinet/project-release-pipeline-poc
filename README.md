@@ -7,7 +7,7 @@ This POC is limited to work with a nodejs project.
 
 ## Instructions
 
-The [.github/workflows](.github/workflows) folder and the yaml files must be present in the default branch in order to be triggered properly. Some of them are desinged to be triggered by certain GitHub events while the others are desinged to be triggered manually via the [Actions](actions) page.
+The [.github/workflows](.github/workflows) folder and the yaml files must be present in the default branch in order to be triggered properly. Some of them are desinged to be triggered by certain GitHub events while the others are desinged to be triggered manually via the [Actions](https://github.com/fortinet/project-release-pipeline-poc/actions) page.
 
 ### Workflows
 
@@ -131,4 +131,14 @@ The full set of checkings against the target branch will either pass all or fail
 
 ## Issues
 
-There are still known issues to the project. Please refer to the [Issues](issues) page.
+There are still known issues to the project. Please refer to the [Issues](https://github.com/fortinet/project-release-pipeline-poc/issues) page.
+
+## Support
+
+Fortinet-provided scripts in this and other GitHub projects do not fall under the regular Fortinet technical support scope and are not supported by FortiCare Support Services.
+For direct issues, please refer to the [Issues](https://github.com/fortinet/project-release-pipeline-poc/issues) tab of this GitHub project.
+For other questions related to this project, contact [github@fortinet.com](mailto:github@fortinet.com).
+
+## License
+
+[License](./LICENSE) © Fortinet Technologies. All rights reserved.
