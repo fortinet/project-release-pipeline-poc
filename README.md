@@ -52,7 +52,7 @@ This workflow uses the following GitHub actions:
 Two pull request pre-configuration templates available to reference in demo:
 
 * [.github/workflows/templates/version-pr.yml](.github/workflows/templates/version-pr.yml) (default)
-* [templates/version-pr.yml](templates/version-pr.yml)
+* [examples/templates/version-pr.yml](examples/templates/version-pr.yml)
 
 A set of place holders is available to use in the pre-configuration template. See the GitHub Action project [github-action-version-pr](https://github.com/fortinet/github-action-version-pr) for more information.
 
