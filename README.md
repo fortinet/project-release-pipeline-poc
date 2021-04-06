@@ -133,6 +133,12 @@ The full set of checkings against the target branch will either pass all or fail
 
 There are still known issues to the project. Please refer to the [Issues](https://github.com/fortinet/project-release-pipeline-poc/issues) page.
 
+## Diagrams
+
+![release pipeline overview](https://raw.githubusercontent.com/fortinet/project-release-pipeline-poc/main/docs/diagrams/release-pipeline-overview.png "Release Pipeline Overview")
+
+![versioning release](https://raw.githubusercontent.com/fortinet/project-release-pipeline-poc/main/docs/diagrams/versioning-release.png "Versioning Release")
+
 ## Support
 
 Fortinet-provided scripts in this and other GitHub projects do not fall under the regular Fortinet technical support scope and are not supported by FortiCare Support Services.
